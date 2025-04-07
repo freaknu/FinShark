@@ -46,7 +46,7 @@ namespace api.Controllers
         {
             try
             {
-                var stock = await _context.Stock.FindAsync(stockid);
+                var stock = await stockRepo.GetByidAsync(stockid);
                 if (stock == null)
                 {
                     return NotFound();
@@ -55,7 +55,6 @@ namespace api.Controllers
             }
             catch (System.Exception)
             {
-
                 throw;
             }
         }
@@ -82,15 +81,12 @@ namespace api.Controllers
         {
             try
             {
-                var stock = await _context.Stock.FirstOrDefaultAsync(st => st.Id == stockid);
+                var stock = await stockRepo.DeleteStock(stockid);
                 if (stock == null) return NotFound();
-                _context.Stock.Remove(stock);
-                await _context.SaveChangesAsync();
                 return Ok("Deleted Successfully" + " " + stock);
             }
             catch (System.Exception)
             {
-
                 throw;
             }
         }

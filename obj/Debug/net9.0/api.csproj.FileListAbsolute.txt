@@ -164,3 +164,4 @@ C:\Users\prabhat\OneDrive\Desktop\ASP DOT NET\Project\api\obj\Debug\net9.0\refin
 C:\Users\prabhat\OneDrive\Desktop\ASP DOT NET\Project\api\obj\Debug\net9.0\api.pdb
 C:\Users\prabhat\OneDrive\Desktop\ASP DOT NET\Project\api\obj\Debug\net9.0\api.genruntimeconfig.cache
 C:\Users\prabhat\OneDrive\Desktop\ASP DOT NET\Project\api\obj\Debug\net9.0\ref\api.dll
+C:\Users\prabhat\OneDrive\Desktop\ASP DOT NET\Project\api\obj\Debug\net9.0\api.sourcelink.json
