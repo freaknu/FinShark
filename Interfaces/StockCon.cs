@@ -10,7 +10,8 @@ namespace api.Interfaces
     public interface StockCon
     {
         public Task<List<Stock>> GetStocksAsync();
-        public Task<Stock> GetByidAsync(int StockId);
-        public Task<Stock> DeleteStock(int StockId);
+        public Task<Stock?> GetByidAsync(int StockId);
+        public Task<Stock> CreateAsync(Stock stockModel);
+        public Task<Stock?> DeleteStock(int StockId);
     }
 }

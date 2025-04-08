@@ -17,11 +17,9 @@ namespace api.Controllers
     [ApiController]
     public class StockController : ControllerBase
     {
-        private readonly ApplicationDBContext _context;
         private readonly IStockRepository stockRepo;
-        public StockController(ApplicationDBContext context, IStockRepository stockRepo)
+        public StockController(IStockRepository stockRepo)
         {
-            _context = context;
             this.stockRepo = stockRepo;
         }
         [HttpGet]
@@ -64,8 +62,7 @@ namespace api.Controllers
             try
             {
                 var createStock = newstock.ToStockCreDTO();
-                await _context.Stock.AddAsync(createStock);
-                await _context.SaveChangesAsync();
+                await stockRepo.CreateAsync(createStock);
                 return CreatedAtAction(nameof(getStockById), new { stockid = createStock.Id }, createStock.ToStockDto());
             }
             catch (System.Exception)

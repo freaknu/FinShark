@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Xml;
+using api.Dtos.Comment;
 
 namespace api.Models
 {
@@ -18,7 +19,7 @@ namespace api.Models
         public decimal Divident { get; set; }
         public string Industry { get; set; } = string.Empty;
         public long MarketCap { get; set; }
-        List<Comment> Comments { get; set; } = new List<Comment>();
-        
+        public List<CommentDto> Comments { get; set; } = new List<CommentDto>();
+
     }
 }

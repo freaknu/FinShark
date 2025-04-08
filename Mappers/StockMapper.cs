@@ -19,7 +19,8 @@ namespace api.Mappers
                 Symbol = stockmodel.Symbol,
                 CompanyName = stockmodel.CompanyName,
                 Purchase = stockmodel.Purchase,
-                Industry = stockmodel.Industry
+                Industry = stockmodel.Industry,
+                Comments = stockmodel.Comments.Select(com => com).ToList()
             };
         }
     }
