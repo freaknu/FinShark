@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using api.Data;
+using api.Helpers;
 using api.Interfaces;
 using api.Models;
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -17,16 +18,20 @@ namespace api.Repository
         {
             this.context = context;
         }
-        public async Task<Comment> AddCommentAsync(Comment comment, int StockId)
+        public async Task<Comment> AddCommentAsync(Comment comment)
         {
-            var stock = await context.Stock.FirstOrDefaultAsync(st => st.Id == StockId);
-            throw new NotImplementedException();
-
+            await context.Comment.AddAsync(comment);
+            await context.SaveChangesAsync();
+            return comment;
         }
 
-        public Task<Comment?> DeleteCommentAsync(int CommentId)
+        public async Task<Comment?> DeleteCommentAsync(int CommentId)
         {
-            throw new NotImplementedException();
+            var comment = await context.Comment.FindAsync(CommentId);
+            if (comment == null) return null;
+            context.Comment.Remove(comment);
+            await context.SaveChangesAsync();
+            return comment;
         }
 
         public async Task<List<Comment>> GetAllCommentsAsync()
@@ -40,9 +45,14 @@ namespace api.Repository
             return comment;
         }
 
-        public Task<Comment?> UpdateCommentAsync(int CommentId, Comment comment)
+        public async Task<Comment?> UpdateCommentAsync(Comment comment, int CommentId)
         {
-            throw new NotImplementedException();
+            var commentmodel = await context.Comment.FindAsync(CommentId);
+            if (commentmodel == null) return null;
+            commentmodel.Title = comment.Title;
+            commentmodel.Content = comment.Content;
+            await context.SaveChangesAsync();
+            return comment;
         }
     }
 }
